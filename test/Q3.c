@@ -67,10 +67,10 @@ void recursion(int arr[], int arrSize, int index) {
     if (arr[i]>max) 
       max = arr[i];
   }
-  if (index == arrSize-1) {
+  if (index == arrSize) {
     return;
   }
-  for (int i = 1; ((int) (pow(i, 3)+pow(i+1, 3))) < max; i++) {
+  for (int i = 1; ((int) (pow(i, 3)+pow(i+1, 3))) <= max; i++) {
     if (((int) (pow(i, 3)+pow(i+1, 3))) == arr[index]) {
       printf("%d is a centered cube\n", arr[index]);
       break;
