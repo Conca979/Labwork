@@ -1,19 +1,11 @@
 // Initialize a random array of your choice. The current goal is to verify whether an array number is
 // centered cube.
 // Note: a centered cube number is calculated by the following formula:
-// 𝑓(𝑛) = 𝑛
-// 3 + (𝑛 + 1)
-// 3
+// 𝑓(𝑛) = 𝑛^3 + (𝑛 + 1)^3
 // For example, the centered cube numbers are:
-// f(1) = 1
-// 3 + (1 + 1)
-// 3 = 9
-// f(2) = 2
-// 3 + (2 + 1)
-// 3 = 8 + 27 = 35
-// f(3) = 3
-// 3 + (3 + 1)
-// 3 = 27 + 64 = 91
+// f(1) = 1^3 + (1 + 1)^3 = 9
+// f(2) = 2^3 + (2 + 1)^3 = 8 + 27 = 35
+// f(3) = 3^3 + (3 + 1)^3 = 27 + 64 = 91
 // …..
 // ▪ Write pseudo-code using Recursion (if necessary, Iteration) to check all values in the given
 // array are centered cube or not. (2pts)
@@ -25,10 +17,11 @@
 #include <stdio.h>
 #include <math.h>
 
+void recursion(int arr[], int arrSize, int index);
+
 int main() {
-  int arr[] = {9, 3, 5, 1, 35, 99, 91};
+  int arr[] = {9, 3, 881, 189, 5, 1, 35, 99, 91};
   int arrSize = sizeof(arr)/sizeof(int);
-  int cCube[arrSize];
   //
   //sorting by bubble sort
   for (int i = 1; i<arrSize; i++) {
@@ -52,17 +45,36 @@ int main() {
       max = arr[i];
   }
   //
+  recursion(arr, arrSize, 0);
   //finding cube
-  for (int j = 0; j < arrSize; j++) {
-    for (int i = 1; ((int) (pow(i, 3)+pow(i+1, 3))) < max; i++) {
-      if (((int) (pow(i, 3)+pow(i+1, 3))) == arr[j]) {
-        printf("%d is a centered cube\n", arr[j]);
-        break;
-      }
-    }
-  }
-  
+  // for (int j = 0; j < arrSize; j++) {
+  //   for (int i = 1; ((int) (pow(i, 3)+pow(i+1, 3))) < max; i++) {
+  //     if (((int) (pow(i, 3)+pow(i+1, 3))) == arr[j]) {
+  //       printf("%d is a centered cube\n", arr[j]);
+  //       break;
+  //     }
+  //   }
+  // }
+  //
   
 
   return 0;
+}
+
+void recursion(int arr[], int arrSize, int index) {
+  int max = arr[0];
+  for (int i = 1; i<arrSize; i++) {
+    if (arr[i]>max) 
+      max = arr[i];
+  }
+  if (index == arrSize-1) {
+    return;
+  }
+  for (int i = 1; ((int) (pow(i, 3)+pow(i+1, 3))) < max; i++) {
+    if (((int) (pow(i, 3)+pow(i+1, 3))) == arr[index]) {
+      printf("%d is a centered cube\n", arr[index]);
+      break;
+    }
+  }
+  recursion(arr, arrSize, index+1);
 }
