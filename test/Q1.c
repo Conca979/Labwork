@@ -50,11 +50,11 @@ int main() {
   recursive(0, 1, 2, arrSize);
 
   //
-  // for (int i = 0; i < arrSize ; i++) {
-  //   for (int j = i+1; j<arrSize-1; j++) {
-  //     for (int k = j+1; k<arrSize-2; k++) {
+  // for (int i = 0; i < arrSize - 2; i++) {
+  //   for (int j = i+1; j<arrSize - 1; j++) {
+  //     for (int k = j+1; k<arrSize; k++) {
   //       if ((arr[i]*arr[i] + arr[j]*arr[j]) == arr[k]*arr[k]) {
-  //         printf("A Pythagorean triple: %d-%d-%d\n", i, j, k);
+  //         printf("A Pythagorean triple: %d-%d-%d\n", arr[i], arr[j], arr[k]);
   //       // } else {
   //       //   printf("Not a Pythagorean triple: %d+%d != %d\n", arr[i]*arr[i], arr[j]*arr[j], arr[k]*arr[k]);
   //       }
@@ -66,17 +66,17 @@ int main() {
 }
 
 void recursive(int a, int b, int c, int arrSize) {
-  // printf("%d-%d-%d\n", a, b, c);
+  // printf("%d-%d-%d  |  ", a, b, c);
   if ((arr[a]*arr[a]+arr[b]*arr[b]) == arr[c]*arr[c]) {
     printf("A Pythagorean triple: %d-%d-%d\n", arr[a], arr[b], arr[c]);
   }
   if (c == arrSize) {
     b++;
-    c = b+1;
+    c = b;
     if (b == (arrSize-1)) {
       a++;
       b = a+1;
-      c = b+1;
+      c = b;
       if (a == (arrSize-2)) {
         return;
       }
